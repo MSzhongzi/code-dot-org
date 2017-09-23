@@ -13,7 +13,7 @@ class CoursesController < ApplicationController
         @force_race_interstitial = params[:forceRaceInterstitial]
       end
       format.json do
-        render json: Course.valid_courses
+        render json: Course.valid_courses(current_user)
       end
     end
   end

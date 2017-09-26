@@ -101,8 +101,12 @@ export class UnconnectedGameButtons extends Component {
       !this.props.playspacePhoneFrame && <RunButton key="run" hidden={this.props.hideRunButton}/>,
       !this.props.playspacePhoneFrame && <ResetButton key="reset" />,
       " " /* Explicitly insert whitespace so that this behaves like our ejs file*/,
-      ...this.props.children,
     ];
+    if (Array.isArray(this.props.children)) {
+      mainButtons.push(...this.props.children);
+    } else if (this.props.children) {
+      mainButtons.push(this.props.children);
+    }
     return (
       <div>
         {this.props.protectState ?
